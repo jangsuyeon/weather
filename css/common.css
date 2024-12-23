@@ -1,0 +1,195 @@
+@charset "utf-8";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+#back {
+    position: fixed;
+    left: 0; right: 0;
+    top: 0; bottom: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+#back img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0; left: 0;
+    padding: 0.3em 0.8em;
+    z-index: 100;
+}
+h1 {
+    float: left;
+    font-size: 1.2rem;
+    color: white;
+    text-shadow: 0 0.1em 0.3em rgba(0,0,0,0.8);
+}
+#city {
+    float: right;
+    height: 2.3em;
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#left {
+    text-align: center;
+    float: left;
+    width: 50%;
+    height: 100vh;
+    color: white;
+    position: relative;
+}
+#left>div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+#date {
+    font-size: 0.8em;
+    margin-bottom: 0.5em;
+}
+#temp {
+    font-size: 3em;
+    font-weight: bold;
+}
+#temp::after {
+    content: "\2103";
+    font-size: 0.5em;
+    margin-left: 0.2em;
+}
+#max,#min {
+    font-size: 1.2em;
+    margin: 0 0.3em;
+    display: inline-block;
+}
+#max::after,#min::after{
+    content: "\2103";
+    font-size: 0.5em;
+    margin-left: 0.2em;
+}
+#max::before{
+    content:"최고기온";
+    display: block;
+    font-size: 0.5em;
+}
+#min::before{
+    content:"최저기온";
+    display: block;
+    font-size: 0.5em;
+}
+#wind {
+    margin-top: 1em;
+}
+#dir {
+    width: 1em;
+}
+#speed::after {
+    content: "m/s";
+    font-size: 0.5em;
+    margin-left: 0.2em;
+}
+
+#right {
+    float: right;
+    width: 50%;
+    height: 100vh;
+    position: relative;
+}
+#right>div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+}
+.fore {
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    background-color: white;
+    padding: 0.4em 0.6em;
+    overflow: auto;
+}
+.fore>div {
+    float: left;
+}
+.ficon {
+    width: 3em;
+}
+.ficon img {
+    width: 2.5em;
+}
+.fbox {
+    width: calc(100% - 7em);
+}
+.fday {
+    width: 2em;
+    font-size: 2em;
+}
+.ftemp {
+    font-size: 2em;
+    font-weight: bold;
+}
+.ftemp::after {
+    content: "\2103";
+    font-size: 0.5em;
+    margin-left: 0.3em;
+}
+
+@media all and (max-width:720px) {
+    #left {
+        float: none;
+        width: 100%;
+        height: calc(100vh - 7em);
+    }
+    #right {
+        float: none;
+        width: 100%;
+        height: 7em;
+    }
+    #right>div {
+        position: static;
+        transform: none;
+        width: 100%;
+    }
+    .fore {
+        width: 25%;
+        height: 7em;
+        float: left;
+        overflow: hidden;
+        text-align: center;
+    }
+    .fore>div {
+        float: none;
+        width: 100%;
+    }
+    .ftext {display: none;}
+    .ftemp {
+        font-size: 1em;
+    }
+    .fday {
+        font-size: 1em; 
+    }
+}
+
+
+
+
+
+
