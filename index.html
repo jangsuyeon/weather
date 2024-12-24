@@ -16,7 +16,7 @@
             <img src="images/sun.jpg" alt="sun" />
         </div>
         <header>
-            <h1>날씨어때 (<span id="dosi"></span>)</h1>
+            <h1>날씨어때</h1>
             <select id="city">
                 <option lat="" lon="">현재위치</option>
                 <option lat="37.52682" lon="126.92435">서울</option>
@@ -27,58 +27,61 @@
                 <option lat="33.49947" lon="126.53113">제주</option>
             </select>
         </header>
-        <div id="left">
-            <div>
-                <div id="date"></div>
-                <div id="icon"></div>
-                <div id="forecast"></div>
-                <div id="temp"></div>
-                <div id="minmax">
-                    <span id="min"></span>
-                    <span id="max"></span>
-                </div>
-                <div id="wind">
-                    <img id="dir" src="images/White_Arrow_Up.svg" alt="wind direction" />
-                    <span id="speed"></span>
+        <diV class="flex">
+            <div id="left">
+                <div>
+                    <p id="dosi"></p>
+                    <div id="date"></div>
+                    <div id="icon"></div>
+                    <div id="forecast"></div>
+                    <div id="temp"></div>
+                    <div id="minmax">
+                        <span id="min"></span>
+                        <span id="max"></span>
+                    </div>
+                    <div id="wind">
+                        <img id="dir" src="images/White_Arrow_Up.svg" alt="wind direction" />
+                        <span id="speed"></span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="right">
-            <div>
-                <div class="fore">
-                    <div class="ficon"></div>
-                    <div class="fbox">
-                        <div class="ftemp"></div>
-                        <div class="ftext"></div>
+            <div id="right">
+                <div>
+                    <div class="fore">
+                        <div class="ficon"></div>
+                        <div class="fbox">
+                            <div class="ftemp"></div>
+                            <div class="ftext"></div>
+                        </div>
+                        <div class="fday"></div>
                     </div>
-                    <div class="fday"></div>
-                </div>
-                <div class="fore">
-                    <div class="ficon"></div>
-                    <div class="fbox">
-                        <div class="ftemp"></div>
-                        <div class="ftext"></div>
+                    <div class="fore">
+                        <div class="ficon"></div>
+                        <div class="fbox">
+                            <div class="ftemp"></div>
+                            <div class="ftext"></div>
+                        </div>
+                        <div class="fday"></div>
                     </div>
-                    <div class="fday"></div>
-                </div>
-                <div class="fore">
-                    <div class="ficon"></div>
-                    <div class="fbox">
-                        <div class="ftemp"></div>
-                        <div class="ftext"></div>
+                    <div class="fore">
+                        <div class="ficon"></div>
+                        <div class="fbox">
+                            <div class="ftemp"></div>
+                            <div class="ftext"></div>
+                        </div>
+                        <div class="fday"></div>
                     </div>
-                    <div class="fday"></div>
-                </div>
-                <div class="fore">
-                    <div class="ficon"></div>
-                    <div class="fbox">
-                        <div class="ftemp"></div>
-                        <div class="ftext"></div>
+                    <div class="fore">
+                        <div class="ficon"></div>
+                        <div class="fbox">
+                            <div class="ftemp"></div>
+                            <div class="ftext"></div>
+                        </div>
+                        <div class="fday"></div>
                     </div>
-                    <div class="fday"></div>
                 </div>
             </div>
-        </div>
+        </diV>
         <script src="script/script.js"></script>
     </body>
 </html>

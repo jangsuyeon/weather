@@ -30,15 +30,15 @@ header {
     top: 0; left: 0;
     padding: 0.3em 0.8em;
     z-index: 100;
+    display: flex;
+    justify-content: space-between;
 }
 h1 {
-    float: left;
     font-size: 1.2rem;
     color: white;
     text-shadow: 0 0.1em 0.3em rgba(0,0,0,0.8);
 }
 #city {
-    float: right;
     height: 2.3em;
     padding-left: 1em;
     padding-right: 1em;
@@ -46,9 +46,11 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+.flex {
+    display: flex;
+}
 #left {
     text-align: center;
-    float: left;
     width: 50%;
     height: 100vh;
     color: white;
@@ -59,6 +61,10 @@ h1 {
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
+}
+#dosi {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
 #date {
     font-size: 0.8em;
@@ -106,7 +112,6 @@ h1 {
 }
 
 #right {
-    float: right;
     width: 50%;
     height: 100vh;
     position: relative;
@@ -124,10 +129,8 @@ h1 {
     border-right: 1px solid #ccc;
     background-color: white;
     padding: 0.4em 0.6em;
-    overflow: auto;
-}
-.fore>div {
-    float: left;
+    display: flex;
+    align-items: center;
 }
 .ficon {
     width: 3em;
@@ -153,30 +156,31 @@ h1 {
 }
 
 @media all and (max-width:720px) {
+    .flex {
+        display: block;
+    }
     #left {
-        float: none;
         width: 100%;
         height: calc(100vh - 7em);
     }
     #right {
-        float: none;
         width: 100%;
         height: 7em;
     }
     #right>div {
+        display: flex;
         position: static;
         transform: none;
         width: 100%;
     }
     .fore {
+        display: block;
         width: 25%;
         height: 7em;
-        float: left;
         overflow: hidden;
         text-align: center;
     }
     .fore>div {
-        float: none;
         width: 100%;
     }
     .ftext {display: none;}
@@ -187,9 +191,3 @@ h1 {
         font-size: 1em; 
     }
 }
-
-
-
-
-
-
