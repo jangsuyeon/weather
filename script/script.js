@@ -20,7 +20,7 @@ $(document).ready(function(){
     function naljja(stamp) {
         stamp = stamp * 1000;  // 초 단위 입력 시 밀리초로 변환
         const time = new Date(stamp);
-        time.setDate(time.getDate() - 1);
+        // time.setDate(time.getDate() - 1);
         let year = time.getFullYear();
         let month = time.getMonth() + 1;
         let date = time.getDate();
@@ -28,7 +28,7 @@ $(document).ready(function(){
         if (month < 10) { month = "0" + month; }
         if (date < 10) { date = "0" + date; }
         const day = time.getDay();
-        const yoil = ["월", "화", "수", "목", "금", "토", "일"];
+        const yoil = ["일", "월", "화", "수", "목", "금", "토"];
 
         const formattedDate = year + "-" + month + "-" + date;
         const dayName = yoil[day];
@@ -71,10 +71,10 @@ $(document).ready(function(){
                 $("#dir").css("transform", "rotate(" + data.list[start].wind.deg + "deg)");
                 $("#speed").text(data.list[start].wind.speed);
                 for (let i = 0; i < 4; i++) {
-                    $(".fore").eq(i).find(".ficon").html("<img src='https://openweathermap.org/img/wn/" + data.list[start + (i * 8)].weather[0].icon + "@2x.png' alt='" + data.list[start + (i * 8)].weather[0].description + "' />");
-                    $(".fore").eq(i).find(".ftemp").text(data.list[start + (i * 8)].main.temp);
-                    $(".fore").eq(i).find(".ftext").text(data.list[start + (i * 8)].weather[0].description);
-                    $(".fore").eq(i).find(".fday").text(naljja(data.list[start + (i * 8)].dt).day);
+                    $(".fore").eq(i).find(".ficon").html("<img src='https://openweathermap.org/img/wn/" + data.list[start + ((i+1) * 8)].weather[0].icon + "@2x.png' alt='" + data.list[start + ((i+1) * 8)].weather[0].description + "' />");
+                    $(".fore").eq(i).find(".ftemp").text(data.list[start + ((i+1) * 8)].main.temp);
+                    $(".fore").eq(i).find(".ftext").text(data.list[start + ((i+1) * 8)].weather[0].description);
+                    $(".fore").eq(i).find(".fday").text(naljja(data.list[start + ((i+1) * 8)].dt).day);
                 }
             }
         });
