@@ -1,4 +1,4 @@
-![weather](https://github.com/user-attachments/assets/716d1be1-a7a4-4703-811c-00d0a8080de2)
+<img src="![weather](https://github.com/user-attachments/assets/716d1be1-a7a4-4703-811c-00d0a8080de2)" width="200" />
 ----------
 
 ## 📝 소개
