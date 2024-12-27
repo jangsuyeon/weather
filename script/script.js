@@ -20,7 +20,6 @@ $(document).ready(function(){
     function naljja(stamp) {
         stamp = stamp * 1000;  // 초 단위 입력 시 밀리초로 변환
         const time = new Date(stamp);
-        // time.setDate(time.getDate() - 1);
         let year = time.getFullYear();
         let month = time.getMonth() + 1;
         let date = time.getDate();
@@ -40,9 +39,6 @@ $(document).ready(function(){
     }
 
     const now = new Date();
-    let currentHour = now.getHours();
-    let start = Math.floor(currentHour / 3);
-
     let lat = "37.52682";
     let lon = "126.92435";
     navigator.geolocation.getCurrentPosition(function(pos){
@@ -51,7 +47,7 @@ $(document).ready(function(){
         getweather();
     }, function(){
         getweather();
-    });    
+    });
 
     function getweather(){
         $("#city>option").eq(0).attr({
@@ -61,9 +57,21 @@ $(document).ready(function(){
         $.ajax({
             url: "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=e6ee8ea2d7131ed534209b93ca4235a2&units=metric&lang=kr",
             success: function(data){
+                let start = 0;
+                const now = new Date();
+
+                // 현재 시간 이후의 데이터 인덱스 계산
+                for (let i = 0; i < data.list.length; i++) {
+                    const forecastTime = data.list[i].dt * 1000; // 예보 시간(밀리초)
+                    if (forecastTime >= now.getTime()) {
+                        start = i;
+                        break;
+                    }
+                }
+
                 $("#dosi").text(data.city.name);
-                $("#date").text(naljja(data.list[start].dt).date + " (" + naljja(data.list[0].dt).day + "요일)");
-                $("#icon").html("<img src='https://openweathermap.org/img/wn/" + data.list[0].weather[0].icon + "@2x.png' alt='" + data.list[0].weather[0].description + "' />");
+                $("#date").text(naljja(data.list[start].dt).date + " (" + naljja(data.list[start].dt).day + "요일)");
+                $("#icon").html("<img src='https://openweathermap.org/img/wn/" + data.list[start].weather[0].icon + "@2x.png' alt='" + data.list[start].weather[0].description + "' />");
                 $("#forecast").text(data.list[start].weather[0].description);
                 $("#temp").text(data.list[start].main.temp);
                 $("#min").text(data.list[start].main.temp_min);
@@ -71,10 +79,13 @@ $(document).ready(function(){
                 $("#dir").css("transform", "rotate(" + data.list[start].wind.deg + "deg)");
                 $("#speed").text(data.list[start].wind.speed);
                 for (let i = 0; i < 4; i++) {
-                    $(".fore").eq(i).find(".ficon").html("<img src='https://openweathermap.org/img/wn/" + data.list[start + ((i+1) * 8)].weather[0].icon + "@2x.png' alt='" + data.list[start + ((i+1) * 8)].weather[0].description + "' />");
-                    $(".fore").eq(i).find(".ftemp").text(data.list[start + ((i+1) * 8)].main.temp);
-                    $(".fore").eq(i).find(".ftext").text(data.list[start + ((i+1) * 8)].weather[0].description);
-                    $(".fore").eq(i).find(".fday").text(naljja(data.list[start + ((i+1) * 8)].dt).day);
+                    const forecastIndex = start + ((i + 1) * 8);
+                    if (forecastIndex < data.list.length) {
+                        $(".fore").eq(i).find(".ficon").html("<img src='https://openweathermap.org/img/wn/" + data.list[forecastIndex].weather[0].icon + "@2x.png' alt='" + data.list[forecastIndex].weather[0].description + "' />");
+                        $(".fore").eq(i).find(".ftemp").text(data.list[forecastIndex].main.temp);
+                        $(".fore").eq(i).find(".ftext").text(data.list[forecastIndex].weather[0].description);
+                        $(".fore").eq(i).find(".fday").text(naljja(data.list[forecastIndex].dt).day);
+                    }
                 }
             }
         });
