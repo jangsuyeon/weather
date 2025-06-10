@@ -20,6 +20,7 @@ $(document).ready(function(){
     function naljja(stamp) {
         stamp = stamp * 1000;  // 초 단위 입력 시 밀리초로 변환
         const time = new Date(stamp);
+        // time.setHours(time.getHours() - 3);
         let year = time.getFullYear();
         let month = time.getMonth() + 1;
         let date = time.getDate();
@@ -38,9 +39,12 @@ $(document).ready(function(){
         return result;
     }
 
+    console.log(naljja(1735819200));
+    console.log(naljja(1735819200));
+
     const now = new Date();
-    let lat = "37.52682";
-    let lon = "126.92435";
+    let lat = "37.5665";
+    let lon = "126.9780";
     navigator.geolocation.getCurrentPosition(function(pos){
         lat = pos.coords.latitude;
         lon = pos.coords.longitude;
@@ -69,7 +73,30 @@ $(document).ready(function(){
                     }
                 }
 
+                console.log(data.list[start]);
+                console.log(naljja(data.list[start].dt).date);
+
+
+                // const weatherTranslation = {
+                //     "맑음": "sun",
+                //     "비": "rain",
+                //     "흐림": "cloud0",
+                //     "안개": "mist",
+                //     "눈": "snow",
+                //     // 다른 날씨 설명에 대한 매핑을 추가할 수 있습니다.
+                // };
+                
+                // // 날씨 설명을 영어로 변경
+                // let descriptionInEnglish = weatherTranslation[data.list[start].weather[0].description] || data.list[start].weather[0].description;
+                
+                // // 영어로 바뀐 날씨 설명을 사용
+                // $("#back").children().attr("src", "images/" + descriptionInEnglish.replace(/\s+/g, '_') + ".jpg");
+
+
                 $("#dosi").text(data.city.name);
+                if($("#dosi").text() == 'Gongju') {
+                    $("#dosi").text('Sejong');
+                }
                 $("#date").text(naljja(data.list[start].dt).date + " (" + naljja(data.list[start].dt).day + "요일)");
                 $("#icon").html("<img src='https://openweathermap.org/img/wn/" + data.list[start].weather[0].icon + "@2x.png' alt='" + data.list[start].weather[0].description + "' />");
                 $("#forecast").text(data.list[start].weather[0].description);
